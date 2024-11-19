@@ -29,10 +29,10 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 const Shop = () => {
-  /* useEffect(() => {
+  useEffect(() => {
     let secondDiv = document.getElementById("topHeader");
     secondDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []); */
+  }, []);
 
   const onChange = (key) => {};
 
@@ -77,7 +77,7 @@ export default Shop;
 const content = (
   <div>
     <p>Please Login First</p>
-    <Link to="/login" className="underline text-cyan-600 font-lg">
+    <Link href="/login" className="underline text-cyan-600 font-lg">
       Click here to login
     </Link>
   </div>
@@ -108,9 +108,19 @@ const DigitalProduct = () => {
     setCurrent(page);
     fetchData(page);
   };
-
+  console.log("cookies:- ", Cookies.get('email'));
 //   const navigate = useNavigate();
 
+
+useEffect(()=>{
+  if(Cookies.get('email')){
+    let obj = {}
+    obj['email'] = Cookies.get('email')
+    obj['token'] = Cookies.get('token')
+    obj['id'] = Cookies.get('userId')
+    setCookies(obj)
+  }
+},[])
   const fetchData = (nextpage = undefined) => {
     getDigitalProduct(nextpage)
       .then((response) => {
@@ -186,6 +196,7 @@ const DigitalProduct = () => {
         // "Content-Type": "multipart/form-data",
       },
     };
+    debugger
     let obj = {},
       cartObj = [];
     obj["userId"] = cookies.id;
@@ -245,15 +256,17 @@ const DigitalProduct = () => {
     }
     getCart(cookies.id, header)
       .then((res) => {
-        console.log(res.data[0].products);
-        if (!callFromFunction) {
-          setCartLoader(false);
+          if (!callFromFunction) {
+            setCartLoader(false);
+          }
+        if(res && res.data.length){
+          console.log(res?.data[0]?.products);
+          res.data[0].products.forEach((v) => {
+            arr.push(v.productId._id);
+          });
+          setCartDetails(res?.data[0]?.products.filter((v) => !!v.productId));
+          setProductInCart(arr);
         }
-        res.data[0].products.forEach((v) => {
-          arr.push(v.productId._id);
-        });
-        setCartDetails(res?.data[0]?.products.filter((v) => !!v.productId));
-        setProductInCart(arr);
       })
       .catch((err) => {
         if (!callFromFunction) {
@@ -577,7 +590,7 @@ const DigitalProduct = () => {
                             cartDetails?.filter(
                               (v) => v.productId?._id === item._id
                             ).length) ? (
-                            <div className="px-2 py-1 rounded text-white font-small font-medium text-base bg-[#E2425C] cursor-pointer">
+                            <div className="px-2 py-1 rounded text-white font-small text-[14px] font-medium text-base bg-[#E2425C] cursor-pointer">
                               {cartByIDLoader === item._id ? (
                                 <Icons
                                   string="loading"

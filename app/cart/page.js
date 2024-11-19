@@ -40,6 +40,16 @@ const Cart = () => {
   const [loader, setLoader] = useState(false)
 
   useEffect(()=>{
+  if(Cookies.get('email')){
+    let obj = {}
+    obj['email'] = Cookies.get('email')
+    obj['token'] = Cookies.get('token')
+    obj['id'] = Cookies.get('userId')
+    setCookies(obj)
+  }
+},[])
+
+  useEffect(()=>{
     // debugger
     setNavigation("Cart");
     if(Object.keys(cookies).length){
@@ -47,7 +57,7 @@ const Cart = () => {
     }
     // let secondDiv = document.getElementById("topHeader")
     // secondDiv.scrollIntoView({ behavior: "smooth", block: "start" })
-  },[])
+  },[cookies])
 
   useEffect(() => {
     // debugger
@@ -95,6 +105,7 @@ const Cart = () => {
   };
 
   const getCartDetails = () => {
+    debugger
     const header = {
       headers: {
         "Authorization": `Bearer ${Cookies.get('token')}`,
@@ -161,7 +172,7 @@ const Cart = () => {
         <div className="flex flex-col items-center w-full">
           <div className="text-4xl underline underline-offset-4">Cart Items</div>
           <div className="flex justify-center gap-x-[30px] items-start max-1024:flex-col max-1024:gap-y-[20px] pt-[15px] pb-[30px] cart-section w-[80%]">
-            <div className="w-[1000px] flex flex-col max-1024:w-full p-[15px] max-600:px-[5px] border-2 border-solid border-[#FFA585] rounded-lg bg-[#ffa68552]">
+            <div className="w-[1000px] flex flex-col max-1024:w-full p-[15px] max-600:px-[5px] border-2 border-solid border-[#FFA585] rounded-lg bg-[#ffa68552] gap-y-[20px]">
               {cartDetails.map((idx, i) => (
                 idx.productId
                 ? <div

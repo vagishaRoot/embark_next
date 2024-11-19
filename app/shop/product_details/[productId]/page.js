@@ -31,7 +31,8 @@ import Link from "next/link";
 import Icons from "@/app/Icons/Icons";
 import Navbar from "@/app/components/Navbar";
 
-const Product_Details = () => {
+const Product_Details = ({params}) => {
+  console.log("params:- ", params);
   const [wishlisted, setWishlisted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [digitalData, setDigitalData] = useState([]);
@@ -65,22 +66,20 @@ const Product_Details = () => {
     imageurl: [],
   });
 
-  const params = usePathname();
-  console.log(params.replace('/shop/product_details/',''))
+  // const params = usePathname();
+  // console.log(params.replace('/shop/product_details/',''))
 //   const navigate = useNavigate();
 
-  const id = params.replace('/shop/product_details/','');
+  const id = params.productId;
   const [form] = Form.useForm();
   const [navigation, setNavigation] = useRecoilState(navigateState);
 
-  // useEffect(() => {
-  //   let secondDiv = document.getElementById("topHeader");
-  //   secondDiv.scrollIntoView({ behavior: "smooth", block: "start" });
-  // }, []);
+  useEffect(() => {
+    let secondDiv = document.getElementById("topHeader");
+    secondDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
   useEffect(() => {
-    // let secondDiv = document.getElementById("topHeader");
-    // secondDiv.scrollIntoView({ behavior: "smooth", block: "start" });
     if (id) {
       const fetchProduct = async () => {
         try {
