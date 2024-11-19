@@ -1,0 +1,5 @@
+.bg-image-store-auth{
+    height: 100vh;
+    background-image: url('../assets/storeAuth.png');
+    background-size: cover;
+}

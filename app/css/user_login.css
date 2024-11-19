@@ -1,0 +1,175 @@
+/* .background {
+    background-image: url("../assets/use_login.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+
+} */
+
+/* *{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #03a9f4;
+} */
+
+.login_container.slide{
+    background-color: #ff6776
+}
+.login_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #03a9f4;
+    transition: 1s;
+}
+
+.auth_container{
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background-color: rgba(0,0,0,0.125);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.auth_container .box{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+}
+.auth_container .box h2{
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.auth_container .box button{
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+}
+.auth_formBox{
+    position: absolute;
+    left: 50px;
+    width: 350px;
+    height: 480px;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+.login_container.slide .auth_formBox{
+    left: 400px;
+}
+
+.login_container .auth_formBox .form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    background-color: #fff;
+}
+
+.login_container .auth_formBox .form.signupform{
+    top: 100%;
+    /* transition-delay: 1s; */
+    /* visibility: hidden; */
+}
+.login_container .auth_formBox .form.signinpform{
+    top: 0;
+    transition-delay: 0s;
+    /* visibility: visible; */
+}
+.login_container.slide .auth_formBox .form.signupform{
+    top: 0;
+    transition-delay: 0s;
+    /* visibility: visible; */
+}
+.login_container.slide .auth_formBox .form.signinform{
+    top: -100%;
+    /* transition-delay: 1s; */
+    /* visibility: hidden; */
+}
+
+@media screen and (min-width:851px) {
+    .switch-tabs{display: none;}
+}
+
+@media screen and (max-width:850px) {
+    .auth_container .box{
+        display: none;
+    }
+    .login_container .auth_container{
+        width: 90%;
+        background-color: transparent;
+    }
+
+    .login_container .auth_formBox,.login_container .auth_formBox .form{
+        /* position: unset; */
+        left: unset;
+        /* left: 25%; */
+    }
+    .login_container .auth_formBox .form.signupform{
+        top: 100%;
+        transition-delay: 0s;
+        /* visibility: hidden; */
+    }
+    .login_container .auth_formBox .form.signinpform{
+        top: 0;
+        transition-delay: 0s;
+        /* visibility: visible; */
+    }
+    .login_container.slide .auth_formBox .form.signupform{
+        top: 0;
+        transition-delay: 0s;
+        /* visibility: visible; */
+    }
+    .login_container.slide .auth_formBox .form.signinform{
+        top: -100%;
+        transition-delay: 0s;
+        /* visibility: hidden; */
+    }
+    .login_container.slide .auth_formBox{
+        left: unset;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .auth_formBox{
+        width: 310px !important;
+    }
+}
