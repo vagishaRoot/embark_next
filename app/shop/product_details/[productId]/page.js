@@ -84,7 +84,7 @@ const Product_Details = ({params}) => {
       const fetchProduct = async () => {
         try {
           const response = await axios.get(
-            `https://embark-backend.vercel.app/api/product_get/${id}`
+            `https://api.embarkyourcreativity.com/api/product_get/${id}`
           );
           const {
             title,

@@ -8,6 +8,7 @@ import { buyNowApi, deleteProductCart, getCart } from "../services/storeAPI";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import { useRouter } from "next/navigation";
 
 const data = [
   {
@@ -31,6 +32,7 @@ const data = [
 ];
 
 const Cart = () => {
+  const router = useRouter()
   const [cartDetails, setCartDetails] = useRecoilState(cart);
   const [totalPrice, setTotalPrice] = useState([]);
   const [cartLoader, setCartLoader] = useRecoilState(cartLoading);
@@ -45,6 +47,7 @@ const Cart = () => {
     obj['email'] = Cookies.get('email')
     obj['token'] = Cookies.get('token')
     obj['id'] = Cookies.get('userId')
+    obj['username'] = Cookies.get('username')
     setCookies(obj)
   }
 },[])
@@ -105,7 +108,6 @@ const Cart = () => {
   };
 
   const getCartDetails = () => {
-    debugger
     const header = {
       headers: {
         "Authorization": `Bearer ${Cookies.get('token')}`,
@@ -155,7 +157,7 @@ const Cart = () => {
     .then((res)=>{
       setLoader(false)
       console.log(res);
-    //   navigate('/placing-order')
+      router.push('/placing-order')
     })
     .catch((err)=>{
       setLoader(false)

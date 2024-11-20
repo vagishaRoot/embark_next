@@ -196,7 +196,6 @@ useEffect(()=>{
         // "Content-Type": "multipart/form-data",
       },
     };
-    debugger
     let obj = {},
       cartObj = [];
     obj["userId"] = cookies.id;

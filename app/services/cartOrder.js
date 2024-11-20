@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://embark-backend.vercel.app/api";
+const baseURL = "https://api.embarkyourcreativity.com/api";
 
 const instance = axios.create({
   baseURL,

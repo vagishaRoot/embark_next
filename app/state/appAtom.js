@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { atom, selector } from "recoil";
 
 export const counterState = atom({
@@ -18,9 +19,23 @@ export const navigateState = atom({
   default: "",
 });
 
+const loadUserDataFromCookies = () => {
+  if(!!Cookies.get('email')){
+    let obj = {
+      username: Cookies.get("username"),
+      email: Cookies.get("email"),
+      id: Cookies.get("userId"),
+    };
+    return obj
+  } else {
+    let obj2 = {}
+    return obj2
+  }
+}
+
 export const cookiesState = atom({
   key: "cookiesState",
-  default: {},
+  default: loadUserDataFromCookies(),
 });
 
 export const cart = atom({

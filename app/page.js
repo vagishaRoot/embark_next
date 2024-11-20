@@ -240,8 +240,7 @@ const Home = () => {
           <Icons string="loading" />
         ) : (
           <div className="w-[70%] 1700-1024:w-[85%] max-1024:w-[85%] grid grid-cols-4 justify-center gap-10 my-10 1700-1024:grid-cols-3 1300-680:grid-cols-2 max-680:grid-cols-1 max-680:justify-items-center">
-            {storeData
-              .filter((v) => !!v.price)
+            {storeData?.filter((v) => !!v.price)
               ?.slice(0, 4)
               .map((item, i) => (
                 <div className="w-full flex justify-center" key={i}>
