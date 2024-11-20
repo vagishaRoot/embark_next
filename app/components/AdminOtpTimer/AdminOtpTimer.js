@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import React, { useEffect, useState } from 'react'
-import Icons from '../Icons/Icons';
+import Icons from '../../Icons/Icons';
 
 const AdminOtpTimer = ({resendOtp, loader}) => {
   const [timer, setTimer] = useState(localStorage.getItem("adminOtpTimer") || 120);
