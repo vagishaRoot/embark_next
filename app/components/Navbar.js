@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // import logo from "/images/logo.png";
 // import Icons from "../Icons/Icons";
 // import { Link, NavLink, useNavigate } from "react-router-dom";
-// import "../css/navbar.css";
+import "../css/navbar.css";
 // import line from "../assets/line.png";
 // import { cart, cookiesState, navigateState, wishlistArray } from "../state/AppAtom";
 import { useRecoilState } from "recoil";
@@ -16,6 +16,7 @@ import Line from "./Line";
 import {
   cart,
   cartLoading,
+  navigateState,
   orderDiscount,
   prevOrderArray,
   wishlistArray,
@@ -64,38 +65,39 @@ const Navbar = () => {
   };
 
   const [menuClick, setMenuClick] = useState(false);
-  //   const [navigation, setNavigation] = useRecoilState(navigateState);
+    const [navigation, setNavigation] = useRecoilState(navigateState);
   const [cookies, setCookies] = useState({});
   const [cartDetails, setCartDetails] = useRecoilState(cart);
   const [wishlist, setWishlist] = useRecoilState(wishlistArray);
   const [allWishlistLoader, setAllWishlistLoader] = useState(false);
   const [cartLoader, setCartLoader] = useRecoilState(cartLoading);
-    const [prevOrderDiscount, setPrevOrderDiscount] = useRecoilState(orderDiscount);
+  const [prevOrderDiscount, setPrevOrderDiscount] =
+    useRecoilState(orderDiscount);
   const [allOrders, setAllOrders] = useRecoilState(prevOrderArray);
 
   const allOrdersNumber = (num) => {
-    let type= 0
-    if(num >= 5 && num < 10){
-      type = 5
-    } else if(num >= 10 && num < 15){
-      type = 10
-    } else if(num >= 15 && num < 20){
-      type = 15
-    } else if(num >= 20 && num < 25){
-      type = 20
-    } else if(num >= 25){
-      type = 25
+    let type = 0;
+    if (num >= 5 && num < 10) {
+      type = 5;
+    } else if (num >= 10 && num < 15) {
+      type = 10;
+    } else if (num >= 15 && num < 20) {
+      type = 15;
+    } else if (num >= 20 && num < 25) {
+      type = 20;
+    } else if (num >= 25) {
+      type = 25;
     }
-    return type
+    return type;
   };
 
-  useEffect(()=>{
-    if(allOrders && allOrders.length){
-      setPrevOrderDiscount(allOrdersNumber(allOrders.length))
-      
-      Cookies.set("orders", allOrdersNumber(allOrders.length))
+  useEffect(() => {
+    if (allOrders && allOrders.length) {
+      setPrevOrderDiscount(allOrdersNumber(allOrders.length));
+
+      Cookies.set("orders", allOrdersNumber(allOrders.length));
     }
-  },[allOrders])
+  }, [allOrders]);
 
   const getAllWishlist = (obj = undefined) => {
     setAllWishlistLoader(true);
@@ -166,9 +168,12 @@ const Navbar = () => {
 
   useEffect(() => {
     let obj = {};
-    obj["email"] = Cookies.get("email");
-    obj["username"] = Cookies.get("username");
-    obj["id"] = Cookies.get("userId");
+    console.log("cookies:- ", Cookies.get("email"));
+    if (!!Cookies.get("email")) {
+      obj["email"] = Cookies.get("email");
+      obj["username"] = Cookies.get("username");
+      obj["id"] = Cookies.get("userId");
+    }
     getCartDetails(obj);
     getAllWishlist(obj);
     getAllOrders(obj);
@@ -225,19 +230,19 @@ const Navbar = () => {
               </Link>
             )}
             <Link href="/wishlist">
-              <Icons
-                string="whislist"
-                color="black"
-                width="30px"
-                height="30px"
-              />
-              {/* <Badge count={wishlist.filter(v=>v).length}>
-              </Badge> */}
+              <Badge count={wishlist.filter(v=>v).length}>
+                <Icons
+                  string="whislist"
+                  color="black"
+                  width="30px"
+                  height="30px"
+                />
+              </Badge>
             </Link>
             <Link href="/cart">
-              <Icons string="cart" />
-              {/* <Badge count={cartDetails?.length}>
-              </Badge> */}
+              <Badge count={cartDetails?.length}>
+                <Icons string="cart" />
+              </Badge>
             </Link>
           </div>
         </div>
@@ -249,7 +254,11 @@ const Navbar = () => {
             <Link
               key={item.id}
               href={item.path}
-              className={`font-bold font-small py-3 px-2 cursor-pointer`}
+              className={`font-bold font-small py-3 px-2 cursor-pointer ${
+                navigation === item.head.replaceAll(" ", "_")
+                  ? "active_navigate"
+                  : ""
+              }`}
             >
               {item.head === "More" ? "More >>" : item.head}
             </Link>
@@ -280,7 +289,11 @@ const Navbar = () => {
             <Link
               key={item.id}
               href={item.path}
-              className={`font-bold font-small py-3 px-2 cursor-pointer`}
+              className={`font-bold font-small py-3 px-2 cursor-pointer ${
+                navigation === item.head.replaceAll(" ", "_")
+                  ? "active_navigate"
+                  : ""
+              }`}
               onClick={() => handleNavigation(item.path)}
             >
               {item.head}

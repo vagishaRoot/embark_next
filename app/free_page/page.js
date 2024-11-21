@@ -9,6 +9,7 @@ import { cookiesState, navigateState } from "../state/appAtom";
 import { Pagination, Popover } from "antd";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const content = (
   <div>
@@ -113,7 +114,7 @@ const Free_Pages = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="w-full flex flex-col justify-center items-center bg-[#ffa5851f] gap-y-6 free-pages-div">
         <div className=" flex justify-center mt-20 w-[90%] items-center">
           <div className="w-[99%] max-768:hidden">
@@ -195,6 +196,7 @@ const Free_Pages = () => {
 
         
       </div>
+      <Footer />
 
       {/* <div className="border h-1 bg-black  mb-14"></div> */}
     </>

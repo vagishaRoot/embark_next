@@ -8,6 +8,7 @@ import "../css/about.css"
 // import video from "../assets/video/about_us.mp4"
 import ReactPlayer from 'react-player';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 
 const About_Us = () => {
@@ -30,8 +31,8 @@ const About_Us = () => {
   return (
     <>
 
-      <div className=' w-full'>
       <Navbar />
+      <div className=' w-full'>
       <img src="/images/about_banner.png" className='w-full' />
         {/* <div className=' circle w-[300px] h-[300px] flex flex-col justify-center gap-y-4  '>
           <h1 className=' text-2xl font-bold text-black  underline underline-offset-4 font-small  px-12'>About us our creative world</h1>
@@ -78,6 +79,7 @@ const About_Us = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

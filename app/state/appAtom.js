@@ -15,11 +15,12 @@ export const doubleCounterState = selector({
 });
 
 export const navigateState = atom({
-  key: "accessTokenState",
+  key: "navigateState",
   default: "",
 });
 
 const loadUserDataFromCookies = () => {
+  console.log("cookies:- ",Cookies.get('email'))
   if(!!Cookies.get('email')){
     let obj = {
       username: Cookies.get("username"),

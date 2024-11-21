@@ -26,10 +26,10 @@ import {
 } from "../../../services/storeAPI";
 import TextArea from "antd/es/input/TextArea";
 import Cookies from "js-cookie";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Icons from "@/app/Icons/Icons";
 import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 
 const Product_Details = ({params}) => {
   console.log("params:- ", params);
@@ -1129,6 +1129,7 @@ const Product_Details = ({params}) => {
           </div>
         )}
       </Modal>
+      <Footer />
     </>
   );
 };

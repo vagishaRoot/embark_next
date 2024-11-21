@@ -11,6 +11,7 @@ import { Pagination } from "antd";
 import Icons from "../Icons/Icons";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 const Blogs = () => {
   const [blogData, setBlogData] = useState([]);
@@ -134,6 +135,7 @@ const Blogs = () => {
           <div className="text-4xl font-small font-bold">Loading</div>
         </div>
       )}
+      <Footer />
     </>
   );
 };

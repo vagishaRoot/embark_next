@@ -12,6 +12,7 @@ import { notification } from "antd";
 import { useRouter } from "next/navigation";
 import ThankyouMessage from "../components/ThankyouMessage";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const SendingEmail = () => {
   const [wrongToken, setWrongToken] = useState(false);
@@ -231,6 +232,7 @@ const SendingEmail = () => {
         )}
       </>
       )}
+      <Footer />
     </>
   );
 };

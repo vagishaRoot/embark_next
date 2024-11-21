@@ -10,6 +10,7 @@ import { Skeleton } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Navbar from "@/app/components/Navbar";
+import { Footer } from "antd/es/layout/layout";
 
 const Blog_details = ({ params }) => {
   //   const [navigation, setNavigation] = useRecoilState(navigateState);
@@ -171,6 +172,7 @@ const Blog_details = ({ params }) => {
           )}
         </div>
       )}
+      <Footer />
     </>
   );
 };

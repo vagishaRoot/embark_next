@@ -9,7 +9,8 @@ import { useRecoilState } from "recoil";
 import { cookiesState, navigateState } from "../state/appAtom";
 
 import OtpTimerRegisteration from "./OtpTimerRegisteration.js";
-// import { adminLogin } from "./adminPanel/adminServices/adminAuth";
+import { useRouter } from "next/navigation";
+import { adminLogin } from "../adminServices/adminAuth";
 
 const User_Login = ({
   height = undefined,
@@ -30,6 +31,7 @@ const User_Login = ({
   const [loginError, setLoginError] = useState("");
   const [registerError, setRegisterError] = useState("");
   const [otpError, setOtpError] = useState("");
+  const router = useRouter()
 //   const navigate = useNavigate();
 
   const signUpBtn = () => {
@@ -70,7 +72,7 @@ const User_Login = ({
       },
     }).then(()=>{
       if(type === 'success') {
-        // navigate('/store/dashboard')
+        router.push('/store/dashboard')
       }
     })
   };
@@ -96,15 +98,15 @@ const User_Login = ({
 
   /* useEffect(() => {
     if (Object.keys(cookies).length && Object.keys(navigateLink).length === 0) {
-      navigate("/dashboard");
+      router.push("/dashboard");
     } else if (
       Object.keys(cookies).length &&
       Object.keys(navigateLink).length
     ) {
-      if (navigateLink.navigate === "home") {
-        navigate(`/`);
+      if (navigateLink.router.push === "home") {
+        router.push(`/`);
       } else {
-        navigate(`/${navigateLink.navigate.replaceAll("-", "/")}`);
+        router.push(`/${navigateLink.router.push.replaceAll("-", "/")}`);
       }
     }
   }, [cookies]); */
@@ -160,34 +162,34 @@ const User_Login = ({
       });
   };
 
-//   const loginAdmin = (obj) => {
-//     adminLogin(obj)
-//     .then((res) => {
-//       // debugger
-//       console.log(res);
-//       setLoginLoader(false);
-//       if (res.response === undefined) {
-//         localStorage.setItem(
-//           "logginId",
-//           `${res.data.user.id}--${res.data.token}`
-//         );
-//         localStorage.setItem("loginTime", JSON.stringify(new Date()));
-//         openMessage('You are logged in as "Admin". You are redirecting to Dashboard', 'success')
-//       } else {
-//         openMessage(res.response.data.message, "error");
-//       }
-//     })
-//     .catch((err) => {
-//       setLoginLoader(false);
-//       console.log(err);
-//     });
-//   }
+  const loginAdmin = (obj) => {
+    adminLogin(obj)
+    .then((res) => {
+      // debugger
+      console.log(res);
+      setLoginLoader(false);
+      if (res.response === undefined) {
+        localStorage.setItem(
+          "logginId",
+          `${res.data.user.id}--${res.data.token}`
+        );
+        localStorage.setItem("loginTime", JSON.stringify(new Date()));
+        openMessage('You are logged in as "Admin". You are redirecting to Dashboard', 'success')
+      } else {
+        openMessage(res.response.data.message, "error");
+      }
+    })
+    .catch((err) => {
+      setLoginLoader(false);
+      console.log(err);
+    });
+  }
 
   const onFinish = (e) => {
     if (authComp === "Login") {
       setLoginLoader(true);
       if(e.email === 'embarkyourcreativity@gmail.com'){
-        // loginAdmin(e)
+        loginAdmin(e)
       } else{
         loginUser(e);
       }
@@ -358,7 +360,7 @@ const User_Login = ({
     }
     localStorage.removeItem("forgotEmail");
     localStorage.removeItem("timer");
-    // navigate("/reset-password");
+    router.push("/reset-password");
   };
 
   const resetOtpForm = () => {

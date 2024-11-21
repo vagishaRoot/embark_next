@@ -20,6 +20,7 @@ import { Popover } from "antd";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const Home = () => {
   const [navigation, setNavigation] = useRecoilState(navigateState);
@@ -421,6 +422,7 @@ const Home = () => {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 };

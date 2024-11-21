@@ -25,6 +25,7 @@ import { changePassword, forgotPassword } from "../services/authAPI";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const data = [
   {
@@ -535,6 +536,7 @@ const User_Dashboard = () => {
           <Icons string="loading" />
         </div>
       )}
+      <Footer />
     </>
   );
 };

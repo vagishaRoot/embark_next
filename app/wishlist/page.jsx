@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 import { getWishlist } from "../services/storeAPI";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 const Wishlist = () => {
   const router  = useRouter()
@@ -155,6 +156,7 @@ const Wishlist = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

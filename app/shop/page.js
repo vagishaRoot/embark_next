@@ -27,6 +27,7 @@ import {
 import Cookies from "js-cookie";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Shop = () => {
   useEffect(() => {
@@ -68,6 +69,7 @@ const Shop = () => {
           centered
         />
       </div>
+      <Footer />
     </>
   );
 };
